@@ -43,7 +43,25 @@ async function fetchRecipes() {
     // in the recipes folder and fetch them from there. You'll need to add their paths to the recipes array.
 
     // Part 1 Expose - TODO
+
+    for (let i = 0; i < recipes.length; i++){
+      fetch(recipes[i])
+        .then(response => {
+          if(response.ok){
+            resolve("successful")
+          }else{
+            reject("unsuccessful")
+          }
+        })
+        .then(data => recipeData.push(data))
+    }
+
+    // what the .then function really does. 
+
+
   });
+
+
 }
 
 function createRecipeCards() {
