@@ -45,15 +45,14 @@ async function fetchRecipes() {
     // Part 1 Expose - TODO
 
     for (let i = 0; i < recipes.length; i++){
-      fetch(recipes[i])
-        .then(response => {
-          if(response.ok){
-            resolve("successful")
-          }else{
-            reject("unsuccessful")
-          }
+      fetch(recipes[i]).then(function(response){
+        response.json().then(function(data){
+          recipeData.push(data);
         })
-        .then(data => recipeData.push(data))
+      }).catch(function(e){
+        reject("Unsuccessful")
+      })
+      resolve("Successfulo")
     }
 
     // what the .then function really does. 
