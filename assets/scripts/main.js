@@ -50,12 +50,10 @@ async function fetchRecipes() {
           recipeData.push(data);
         })
       }).catch(function(e){
-        reject("Unsuccessful")
+        reject("Unsuccessful")// if any error is catched, reject 
       })
-      resolve("Successful")
     }
-
-    // what the .then function really does. 
+    resolve("Successful")//otherwise, resolve 
 
 
   });
