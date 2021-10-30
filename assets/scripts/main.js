@@ -52,7 +52,7 @@ async function fetchRecipes() {
       }).catch(function(e){
         reject("Unsuccessful")
       })
-      resolve("Successfulo")
+      resolve("Successful")
     }
 
     // what the .then function really does. 
