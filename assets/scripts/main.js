@@ -62,7 +62,7 @@ async function fetchRecipes() {
     }else{
       reject("Unsuccessful");
     }
-    
+
   });
 }
 
