@@ -7,17 +7,21 @@ const recipes = [
   'https://introweb.tech/assets/json/birthdayCake.json',
   'https://introweb.tech/assets/json/chocolateChip.json'
 ];
-
+ 
+ 
 // Once all of the recipes that were specified above have been fetched, their
 // data will be added to this object below. You may use whatever you like for the
 // keys as long as it's unique, one suggestion might but the URL itself
 const recipeData = {}
+//keys: i in the for loop
+
 
 window.addEventListener('DOMContentLoaded', init);
 
 // This is the first function to be called, so when you are tracing your code start here.
 async function init() {
   // fetch the recipes and wait for them to load
+ 
   let fetchSuccessful = await fetchRecipes();
   // if they didn't successfully load, quit the function
   if (!fetchSuccessful) {
@@ -43,6 +47,7 @@ async function fetchRecipes() {
     // in the recipes folder and fetch them from there. You'll need to add their paths to the recipes array.
 
     // Part 1 Expose - TODO
+
     for (let i = 0; i < recipes.length; i++){
      fetch(recipes[i]).then(function(response){
         response.json().then(function(data){
@@ -57,6 +62,7 @@ async function fetchRecipes() {
     }else{
       reject("Unsuccessful");
     }
+
   });
 }
 
@@ -72,9 +78,10 @@ function createRecipeCards() {
 
   for(var i = 0; i < recipeData.length;i++){
     var recipe = document.createElement('recipe-card');
-    recipe.data = recipeData[i]
-    mainElement.appendChild(recipe)
+    recipe.data = recipeData[i];
+    mainElement.appendChild(recipe);
   }
+
 }
 
 function bindShowMore() {
