@@ -1,8 +1,10 @@
 class RecipeCard extends HTMLElement {
   constructor() {
     // Part 1 Expose - TODO
-
+    super();
     // You'll want to attach the shadow DOM here
+    this.attachShadow({mode: 'open'});
+
   }
 
   set data(data) {
@@ -100,6 +102,92 @@ class RecipeCard extends HTMLElement {
     // created in the constructor()
 
     // Part 1 Expose - TODO
+    
+    //img
+    let image = document.createElement('img');
+    image.src = searchForKey(data, 'thumbnailUrl');
+    image.alt = searchForKey(data, 'headline');
+    card.appendChild(image);
+
+    //title
+    let title = document.createElement('p');
+    title.className = 'title';
+    card.appendChild(title);
+
+    //link
+    let link1 = document.createElement('a');
+    link1.innerHTML = searchForKey(data, 'headline');
+    link1.href = getUrl(data);
+    title.appendChild(link1);
+
+    //org
+    let org = document.createElement('p');
+    org.className = 'organization';
+    org.innerHTML = getOrganization(data);
+    card.appendChild(org);
+
+    //rating
+    let rating = document.createElement('div');
+    rating.className = 'rating';
+    card.appendChild(rating);
+
+
+    //different rating values
+    if (searchForKey(data, "ratingValue") === undefined){
+      let spanRating = document.createElement('span');
+      spanRating.textContent = "No Reviews";
+      rating.appendChild(spanRating);
+    }else{
+      let ratingValue = document.createElement('span');
+      let ratingCount = document.createElement('span');
+      let ratingImage = document.createElement('img');
+      ratingValue.textContent = searchForKey(data, 'ratingValue');
+      ratingCount.textContent = searchForKey(data, 'ratingCount');
+
+      rating.appendChild(ratingValue);
+      rating.appendChild(ratingCount);
+      rating.appendChild(ratingImage);
+
+      let roundedRating = Math.round(searchForKey(data, 'ratingValue'));
+      if (roundedRating == 0) {
+        ratingImage.src = "assets/images/icons/0-star.svg"; 
+        ratingImage.alt = "0 Stars"; 
+      } else if (roundedRating == 1) {
+        ratingImage.src = "assets/images/icons/1-star.svg"; 
+        ratingImage.alt = "1 Star"; 
+      } else if (roundedRating == 2) {
+        ratingImage.src = "assets/images/icons/2-star.svg"; 
+        ratingImage.alt = "2 Stars"; 
+      } else if (roundedRating == 3) {
+        ratingImage.src = "assets/images/icons/3-star.svg"; 
+        ratingImage.alt = "3 Stars"; 
+      } else if (roundedRating == 4) {
+        ratingImage.src = "assets/images/icons/4-star.svg"; 
+        ratingImage.alt = "4 Stars"; 
+      } else if (roundedRating == 5) {
+        ratingImage.src = "assets/images/icons/5-star.svg"; 
+        ratingImage.alt = "5 Stars"; 
+      }
+      
+
+    }
+
+    //time
+    let time = document.createElement('time');
+    time.innerText = convertTime(searchForKey(data, 'totalTime'));
+    card.appendChild(time);
+
+    //ingredients
+    let ingredients = document.createElement('p');
+    ingredients.className = "ingredients";
+    ingredients.innerText = createIngredientList(searchForKey(data, 'recipeIngredient'));
+    card.appendChild(ingredients);
+
+    //add shadowroot children
+    this.shadowRoot.append(card);
+    this.shadowRoot.append(this.styleElem);
+
+
   }
 }
 

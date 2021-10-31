@@ -46,6 +46,11 @@ async function fetchRecipes() {
   });
 }
 
+// fetch's promise is return
+// fetch doesn't do anything with the return
+// hint: go thru all of the fetches; resolve at the end when you don't fetch anymore
+// ex: fetch 2 keys; if each recipe maps to smth
+
 function createRecipeCards() {
   // This function is called for you up above.
   // From within this function you can access the recipe data from the JSON 
