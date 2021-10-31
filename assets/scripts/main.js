@@ -49,16 +49,20 @@ async function fetchRecipes() {
     // Part 1 Expose - TODO
 
     for (let i = 0; i < recipes.length; i++){
-     
-      fetch(recipes[i]).then(function(response){
+     fetch(recipes[i]).then(function(response){
         response.json().then(function(data){
           recipeData[i] = data;
         })
       }).catch(function(e){
-        reject("Unsuccessful")// if any error is catched, reject 
+        reject("Unsuccessful");// if any error is catched, reject 
       })
     }
-    resolve("Successful")//otherwise, resolve 
+    if(recipes.length == recipeData.length){
+      resolve("Successful");
+    }else{
+      reject("Unsuccessful");
+    }
+    
   });
 }
 
@@ -70,6 +74,12 @@ function createRecipeCards() {
   // show any others you've added when the user clicks on the "Show more" button.
 
   // Part 1 Expose - TODO
+  var mainElement = querySelector("main");
+
+  for(var i = 0; i < recipeData.length;i++){
+    mainElement.data = recipeData[i];
+  }
+
 }
 
 function bindShowMore() {
