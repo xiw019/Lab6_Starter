@@ -2,5 +2,5 @@
 ## Link to the webpage: ##
 https://xiw019.com/Lab6_Starter/
 ## Lab Contributors: ##
-Vivian Dang
+Vivian Dang  
 Xianglong Wang
