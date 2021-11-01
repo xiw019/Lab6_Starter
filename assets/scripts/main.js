@@ -5,7 +5,10 @@
 const recipes = [
   'https://introweb.tech/assets/json/ghostCookies.json',
   'https://introweb.tech/assets/json/birthdayCake.json',
-  'https://introweb.tech/assets/json/chocolateChip.json'
+  'https://introweb.tech/assets/json/chocolateChip.json',
+  'assets/recipes/recipe1.json',
+  'assets/recipes/recipe2.json',
+  'assets/recipes/recipe3.json'
 ];
 
 // Once all of the recipes that were specified above have been fetched, their
@@ -68,7 +71,7 @@ function createRecipeCards() {
 
   // Part 1 Expose - TODO
 
-  for(var i = 0; i < Object.keys(recipeData).length;i++){
+  for(var i = 0; i < 3;i++){
     var recipe = document.createElement('recipe-card');
     recipe.data = recipeData[i];
     document.querySelector("main").appendChild(recipe);
@@ -77,25 +80,31 @@ function createRecipeCards() {
 
 function bindShowMore() {
   // This function is also called for you up above.
-  // Use this to add the event listener to the "Show more" button, from within 
+  // Use this to add the event listener to the 'Show more' button, from within 
   // that listener you can then create recipe cards for the rest of the .json files
   // that were fetched. You should fetch every recipe in the beginning, whether you
   // display it or not, so you don't need to fetch them again. Simply access them
   // in the recipeData object where you stored them/
 
   // Part 2 Explore - TODO
-  let showMoreButton = document.querySelector('button');
-  let main = document.querySelector('main');
-  let body = document.querySelector('body');
-  showMoreButton.addEventListener("click", (Event)=>{
-    if (showMoreButton.textContent == "Show less"){
-      while(main.firstChild) {
-        main.removeChild(main.firstChild);
-      }
 
+  
+  document.querySelector('button').addEventListener('click', function() {
+    if(document.querySelector('button').innerHTML === 'Show more') {
+      for(var i = 3; i < Object.keys(recipeData).length; i++) {
+        let recipe = document.createElement('recipe-card');
+        recipe.data = recipeData[i];
+        document.querySelector('main').appendChild(recipe);
+      }
+      document.querySelector('button').innerHTML = 'Show less';
+    }else if(document.querySelector('button').innerHTML === 'Show less') {
+      let items = document.querySelectorAll('recipe-card');
+      for(var i = 3; i < Object.keys(recipeData).length; i++) {
+        items[i].remove();
+      }
+      document.querySelector('button').innerHTML = 'Show more';
     }
   });
+}
 
  
-  
-}
