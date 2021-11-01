@@ -72,8 +72,8 @@ function createRecipeCards() {
 
   for(var i = 0; i < recipeData.length;i++){
     var recipe = document.createElement('recipe-card');
-    recipe.data = recipeData[i]
-    mainElement.appendChild(recipe)
+    recipe.data = recipeData[i];
+    mainElement.appendChild(recipe);
   }
 }
 
