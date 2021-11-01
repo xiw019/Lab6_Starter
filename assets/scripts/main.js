@@ -47,15 +47,14 @@ async function fetchRecipes() {
      fetch(recipes[i]).then(function(response){
         response.json().then(function(data){
           recipeData[i] = data;
+          //console.log(data);
+          if(recipes.length == Object.keys(recipeData).length){
+            resolve("Successful");
+          }
         })
       }).catch(function(e){
         reject("Unsuccessful");// if any error is catched, reject 
       })
-    }
-    if(recipes.length == recipeData.length){
-      resolve("Successful");
-    }else{
-      reject("Unsuccessful");
     }
   });
 }
@@ -68,12 +67,11 @@ function createRecipeCards() {
   // show any others you've added when the user clicks on the "Show more" button.
 
   // Part 1 Expose - TODO
-  var mainElement = document.querySelector("main");
 
-  for(var i = 0; i < recipeData.length;i++){
+  for(var i = 0; i < 3;i++){
     var recipe = document.createElement('recipe-card');
     recipe.data = recipeData[i];
-    mainElement.appendChild(recipe);
+    document.querySelector("main").appendChild(recipe);
   }
 }
 
