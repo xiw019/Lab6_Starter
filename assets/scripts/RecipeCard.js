@@ -95,8 +95,8 @@ class RecipeCard extends HTMLElement {
       // Part 1 Expose - TODO
       
       //img
-      this.shadowRoot.appendChild(styleElem);
-
+      //this.shadowRoot.appendChild(styleElem);
+      shadowRoot.appendChild(styleElem);
       let image = document.createElement('img');
       image.src = searchForKey(data, 'thumbnailUrl');
       image.alt = searchForKey(data, 'headline');
