@@ -84,4 +84,18 @@ function bindShowMore() {
   // in the recipeData object where you stored them/
 
   // Part 2 Explore - TODO
+  let showMoreButton = document.querySelector('button');
+  let main = document.querySelector('main');
+  let body = document.querySelector('body');
+  showMoreButton.addEventListener("click", (Event)=>{
+    if (showMoreButton.textContent == "Show less"){
+      while(main.firstChild) {
+        main.removeChild(main.firstChild);
+      }
+
+    }
+  });
+
+ 
+  
 }
